@@ -1,0 +1,28 @@
+{
+  "$id": "https://verana-labs.github.io/verifiable-trust-spec/schemas/v4/example.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hologram Demo Avatar Credential",
+  "description": "An avatar credential schema used by the Hologram AI Agent Example dependencies to authenticate end-users on demo agents.",
+  "type": "object",
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "avatar": {
+          "format": "uri",
+          "maxLength": 1400000,
+          "pattern": "^data:image/(png|jpeg|svg\\+xml);base64,",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  }
+}

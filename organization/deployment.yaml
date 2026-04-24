@@ -1,0 +1,47 @@
+# Organization Agent deployment — Helm chart values
+#
+# For the Hologram AI Agent Example dependencies (Hologram Demo SA).
+chartSource: oci://registry-1.docker.io/veranalabs/vs-agent-chart
+chartVersion: v1.9.2
+
+global:
+  domain: demos.hologram.zone
+
+name: organization
+replicas: 1
+
+adminPort: 3000
+didcommPort: 3001
+eventsBaseUrl: "https://organization.demos.hologram.zone"
+publicDidMethod: "webvh"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+ingress:
+  host: "organization.demos.hologram.zone"
+  tlsSecret: "organization.demos.hologram.zone-cert"
+  public:
+    enableCors: true
+  private:
+    enableCors: true
+    whitelistSourceRange: ""
+    tlsSecret: ""
+    host: ""
+
+extraEnv:
+  - name: ENABLE_PUBLIC_API_SWAGGER
+    value: "true"
+  - name: AGENT_LOG_LEVEL
+    value: "3"
+  - name: USE_CORS
+    value: "true"
+
+storage:
+  size: 1Gi
+  storageClassName: csi-cinder-high-speed
