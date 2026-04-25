@@ -5,14 +5,14 @@ chartSource: oci://registry-1.docker.io/veranalabs/vs-agent-chart
 chartVersion: v1.10.1
 
 global:
-  domain: demos.hologram.zone
+  domain: sandbox.hologram.zone
 
 name: avatar
 replicas: 1
 
 adminPort: 3000
 didcommPort: 3001
-eventsBaseUrl: "https://avatar.demos.hologram.zone"
+eventsBaseUrl: "https://avatar.sandbox.hologram.zone"
 publicDidMethod: "webvh"
 
 resources:
@@ -24,8 +24,8 @@ resources:
     memory: 512Mi
 
 ingress:
-  host: "avatar.demos.hologram.zone"
-  tlsSecret: "avatar.demos.hologram.zone-cert"
+  host: "avatar.sandbox.hologram.zone"
+  tlsSecret: "avatar.sandbox.hologram.zone-cert"
   public:
     enableCors: true
   private:

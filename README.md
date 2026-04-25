@@ -1,15 +1,15 @@
-# Hologram AI Agent Example — Dependencies
+# Hologram Sandbox Agent — Dependencies
 
-Shared infrastructure for the [Hologram AI Agent Example](https://github.com/2060-io/hologram-ai-agent-example). This repo deploys two Verifiable Services:
+Shared infrastructure for the [Hologram Sandbox Agent Example](https://github.com/2060-io/hologram-sandbox-agent-example). This repo deploys two Verifiable Services:
 
 - **Organization** — `Hologram Demo SA`, the trust anchor. Obtains the ECS Organization + Service credentials from Verana testnet, creates its own Trust Registry, registers an Avatar credential schema, and issues Service credentials to child agents.
 - **Avatar Issuer** — a DIDComm chatbot that issues an **Avatar credential** (AnonCreds) to end users so they can authenticate against the example agent.
 
-These two services are what a documentation reader depends on to try out [`hologram-ai-agent-example`](https://github.com/2060-io/hologram-ai-agent-example) without having to stand up their own Trust Registry first.
+These two services are what a documentation reader depends on to try out [`hologram-sandbox-agent-example`](https://github.com/2060-io/hologram-sandbox-agent-example) without having to stand up their own Trust Registry first.
 
 ```
 ┌─────────────────────────┐
-│   Hologram Demo SA      │   organization.demos.hologram.zone
+│   Hologram Demo SA      │   organization.sandbox.hologram.zone
 │   (Organization VS)     │
 │   - ECS credentials     │
 │   - Trust Registry      │
@@ -18,7 +18,7 @@ These two services are what a documentation reader depends on to try out [`holog
            │ Service credential
            ▼
 ┌─────────────────────────┐
-│   Demo Avatar Issuer    │   avatar.demos.hologram.zone
+│   Demo Avatar Issuer    │   avatar.sandbox.hologram.zone
 │   (Avatar VS)           │
 │   - AnonCreds credDef   │
 │   - Issuer chatbot      │
@@ -26,8 +26,8 @@ These two services are what a documentation reader depends on to try out [`holog
            │ Avatar credential (issued to users)
            ▼
 ┌─────────────────────────┐
-│   hologram-ai-agent-    │   example-agent.demos.hologram.zone
-│     example             │
+│   hologram-sandbox-    │   example-agent.sandbox.hologram.zone
+│     agent-example       │
 └─────────────────────────┘
 ```
 
@@ -35,13 +35,13 @@ These two services are what a documentation reader depends on to try out [`holog
 
 | Service | Role | Public URL | Chart |
 |---|---|---|---|
-| `organization` | Trust anchor | `organization.demos.hologram.zone` | `vs-agent-chart` |
-| `avatar` | Avatar credential issuer (chatbot) | `avatar.demos.hologram.zone` | `vs-agent-chart` |
+| `organization` | Trust anchor | `organization.sandbox.hologram.zone` | `vs-agent-chart` |
+| `avatar` | Avatar credential issuer (chatbot) | `avatar.sandbox.hologram.zone` | `vs-agent-chart` |
 
 ## Repository layout
 
 ```
-hologram-ai-agent-example-deps/
+hologram-sandbox-deps/
 ├── organization/
 │   ├── config.env          # Hologram Demo SA identity + TR configuration
 │   ├── deployment.yaml     # Helm values for the vs-agent-chart
@@ -107,15 +107,15 @@ Point the avatar at the running organization and use the same helpers to obtain 
 
 ## End-user flow
 
-Once both services are deployed on `demos.hologram.zone`, an end user:
+Once both services are deployed on `sandbox.hologram.zone`, an end user:
 
 1. Opens the [Hologram Messaging](https://hologram.zone) app on their phone.
-2. Navigates to `https://avatar.demos.hologram.zone/` (or scans its QR code) to obtain a **Hologram Demo Avatar credential**.
-3. Connects to `example-agent.demos.hologram.zone` (from [`hologram-ai-agent-example`](https://github.com/2060-io/hologram-ai-agent-example)) and authenticates with that credential.
+2. Navigates to `https://avatar.sandbox.hologram.zone/` (or scans its QR code) to obtain a **Hologram Demo Avatar credential**.
+3. Connects to `example-agent.sandbox.hologram.zone` (from [`hologram-sandbox-agent-example`](https://github.com/2060-io/hologram-sandbox-agent-example)) and authenticates with that credential.
 
 ## Related repos
 
-- **[`hologram-ai-agent-example`](https://github.com/2060-io/hologram-ai-agent-example)** — the starter agent that consumes these services. Fork it to build your own.
+- **[`hologram-sandbox-agent-example`](https://github.com/2060-io/hologram-sandbox-agent-example)** — the starter agent that consumes these services. Fork it to build your own.
 - **[`hologram-generic-ai-agent-vs`](https://github.com/2060-io/hologram-generic-ai-agent-vs)** — the underlying AI agent container used by the example.
 - **[`vs-agent`](https://github.com/2060-io/vs-agent)** — the DIDComm / credential primitives.
 

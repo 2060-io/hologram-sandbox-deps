@@ -177,7 +177,7 @@ jobs:
           fi
 
           # Discover custom schema from organization DID doc
-          ORG_PUBLIC_URL="https://organization.demos.hologram.zone"
+          ORG_PUBLIC_URL="https://organization.sandbox.hologram.zone"
 
           ORG_DID_DOC=$(curl -sf "${ORG_PUBLIC_URL}/.well-known/did.json")
           CUSTOM_VP_URL=$(echo "$ORG_DID_DOC" | jq -r '
@@ -285,7 +285,7 @@ jobs:
           MINIO_AK="${{ secrets.MINIO_ACCESS_KEY }}"
           MINIO_SK="${{ secrets.MINIO_SECRET_KEY }}"
           MINIO_BUCKET="avatar-previews"
-          MINIO_PUBLIC_HOST="media.avatar.demos.hologram.zone"
+          MINIO_PUBLIC_HOST="media.avatar.sandbox.hologram.zone"
           if [ -z "$MINIO_AK" ]; then
             MINIO_AK="$(openssl rand -hex 12)"
             echo "::warning::MINIO_ACCESS_KEY secret not set — using generated key"
@@ -493,7 +493,7 @@ jobs:
                       - name: ORG_VS_ADMIN_URL
                         value: "http://organization:3000"
                       - name: ORG_VS_PUBLIC_URL
-                        value: "https://organization.demos.hologram.zone"
+                        value: "https://organization.sandbox.hologram.zone"
                       - name: CHATBOT_PORT
                         value: "${PORT}"
                       - name: DATABASE_URL
